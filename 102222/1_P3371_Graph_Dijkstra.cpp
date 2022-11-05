@@ -9,7 +9,7 @@ using namespace std;
 int m, n, s, u, v;
 ll w;
 
-vector<pair<ll, int>> e[maxn];
+vector<pair<ll, int> > e[maxn];
 bool vis[maxn];
 
 ll dis[maxn];
@@ -18,7 +18,8 @@ int main(){
     scanf("%d%d%d", &n, &m, &s);
     while (m--) {
         scanf("%d%d%lld", &u, &v, &w);
-        e[u].push_back(make_pair(w, v));
+//        e[u].push_back(make_pair(w, v));
+        e[u].push_back({w, v});
     }
     memset(vis, 0, sizeof(vis));
     for (int i = 1; i <= n; i++){
@@ -38,14 +39,22 @@ int main(){
             break;
         }
         vis[t] = true;
-        int sz = e[t].size();
-        for (int i = 0; i < sz; i++){
-            ll d = e[t][i].first;
-            int y = e[t][i].second;
+        for (auto i: e[t]){
+            ll d = i.first;
+            int y = i.second;
             if (vis[y]) continue;
-//            printf("dis[%d] = %lld or %lld + %lld\n", y, dis[y], dis[t], d);
             dis[y] = min(dis[y], dis[t] + d);
         }
+
+
+//        int sz = e[t].size();
+//        for (int i = 0; i < sz; i++){
+//            ll d = e[t][i].first;
+//            int y = e[t][i].second;
+//            if (vis[y]) continue;
+//            printf("dis[%d] = %lld or %lld + %lld\n", y, dis[y], dis[t], d);
+//            dis[y] = min(dis[y], dis[t] + d);
+//        }
     }
     for (int i = 1; i <= n; i++){
         printf("%lld ", dis[i]);

@@ -34,10 +34,9 @@ int main(){
         int t = q.front();
         q.pop();
         vis[t] = false;
-        int sz = e[t].size();
-        for (int i = 0; i < sz; i++){
-            ll d = e[t][i].first;
-            int y = e[t][i].second;
+        for (auto i: e[t]){
+            ll d = i.first;
+            int y = i.second;
             if (dis[y] > dis[t] + d){
                 dis[y] = dis[t] + d;
                 if (!vis[y]){

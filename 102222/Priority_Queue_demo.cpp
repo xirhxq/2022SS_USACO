@@ -11,6 +11,7 @@ int main(){
     cout << "Now at top: " << q.top() << endl;
     q.push(-1);
     cout << "Now at top: " << q.top() << endl;
+    return 0;
 
     priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int> > > p;
     p.push(make_pair(10ll, 1));

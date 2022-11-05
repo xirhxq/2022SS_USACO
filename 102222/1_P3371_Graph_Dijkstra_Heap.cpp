@@ -27,16 +27,15 @@ int main(){
         dis[i] = (1 << 31) - 1;
     }
     dis[s] = 0;
-    q.push(make_pair(0ll, s));
+    q.push({0ll, s});
     while (!q.empty()){
         int t = q.top().second;
         q.pop();
         if (vis[t]) continue;
         vis[t] = true;
-        int sz = e[t].size();
-        for (int i = 0; i < sz; i++){
-            ll d = e[t][i].first;
-            int y = e[t][i].second;
+        for (auto i: e[t]){
+            ll d = i.first;
+            int y = i.second;
             if (vis[y]) continue;
 //            printf("dis[%d] = %lld or %lld + %lld\n", y, dis[y], dis[t], d);
             dis[y] = min(dis[y], dis[t] + d);
